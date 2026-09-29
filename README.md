@@ -1,2 +1,2 @@
 # Nusantrip
-Website pariwisata dan perjalanan Nusantrip - tugas praktikum Pemrograman Web
+Website pariwisata dan perjalanan Nusantrip
