@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk - Nusantrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <header class="auth-top">
+    <div class="container auth-top-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">≈</span>Nusan<span>trip</span></a>
+      <nav>
+        <a href="index.html">← Kembali ke Beranda</a>
+        <a href="#">Bantuan</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <aside class="auth-visual">
+        <img src="img/raja-ampat.jpg" alt="Raja Ampat">
+        <div class="visual-text">
+          <h2>Jelajahi indahnya Indonesia, satu cerita di setiap perjalanan.</h2>
+          <p>Kembali ke petualanganmu. Lanjutkan rencana perjalanan dan temukan destinasi baru.</p>
+        </div>
+        <div class="visual-tag"><strong>Raja Ampat</strong><small>★ 4.96 dari 2.300 ulasan</small></div>
+      </aside>
+
+      <section class="auth-form">
+        <span class="badge">Selamat datang kembali</span>
+        <h1>Masuk</h1>
+        <p class="sub">Masukkan detail akun Anda untuk melanjutkan perjalanan menjelajah Nusantara.</p>
+
+        <form action="dashboard.html">
+          <div class="field">
+            <label for="user">Email atau username</label>
+            <input type="text" id="user" placeholder="nama@email.com" required>
+          </div>
+          <div class="field">
+            <label for="pass">Kata sandi</label>
+            <input type="password" id="pass" placeholder="••••••••" required>
+          </div>
+          <div class="row-between">
+            <label class="check"><input type="checkbox"> Ingat saya</label>
+            <a href="#" class="link">Lupa sandi?</a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Masuk ke Nusantrip →</button>
+        </form>
+
+        <div class="divider"><span>atau masuk dengan</span></div>
+        <div class="social">
+          <button type="button" class="btn btn-outline">Google</button>
+          <button type="button" class="btn btn-outline">Apple</button>
+        </div>
+        <p class="switch">Belum punya akun? <a href="register.html" class="link">Daftar sekarang</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="auth-foot">
+    <div class="container">
+      <small>© 2026 Nusantrip Indonesia. Hak cipta dilindungi.</small>
+      <small><a href="#">Syarat &amp; Ketentuan</a> · <a href="#">Kebijakan Privasi</a></small>
+    </div>
+  </footer>
+
+</body>
+</html>
