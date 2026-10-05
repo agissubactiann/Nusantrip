@@ -1,0 +1,90 @@
+/* ===== Variabel & reset ===== */
+:root {
+  --primary: #0e7c9b;
+  --primary-dark: #0a6179;
+  --accent: #2fa36b;
+  --ink: #12263a;
+  --muted: #64748b;
+  --cream: #f7f3ec;
+  --line: #e5e9ee;
+  --white: #ffffff;
+  --footer: #0f1f2c;
+  --radius: 14px;
+  --font: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--ink); background: var(--white); line-height: 1.6; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+/* ===== Tombol ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 12px 22px; border-radius: 999px; border: 1px solid transparent;
+  font: 600 14px var(--font); cursor: pointer; transition: background .2s, color .2s;
+}
+.btn-sm { padding: 8px 18px; font-size: 13px; }
+.btn-primary { background: var(--primary); color: var(--white); }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: var(--white); color: var(--ink); border-color: var(--line); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-white { background: var(--white); color: var(--ink); }
+.btn-white:hover { background: var(--cream); }
+
+/* ===== Logo & navbar ===== */
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 18px; }
+.logo span:last-child { color: var(--primary); }
+.logo-icon {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px;
+  background: var(--primary); color: var(--white) !important; font-size: 18px;
+}
+.navbar { position: sticky; top: 0; z-index: 10; background: var(--white); border-bottom: 1px solid var(--line); }
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.nav-menu { display: flex; align-items: center; flex: 1; justify-content: space-between; margin-left: 48px; }
+.nav-menu ul { display: flex; gap: 32px; margin: 0 auto; }
+.nav-menu ul a { font-size: 14px; font-weight: 500; color: var(--muted); padding: 6px 0; }
+.nav-menu ul a:hover, .nav-menu ul a.active { color: var(--primary); }
+.nav-menu ul a.active { border-bottom: 2px solid var(--primary); }
+.nav-actions { display: flex; gap: 10px; }
+.menu-toggle, .hamburger { display: none; }
+
+/* ===== Footer ===== */
+.footer { background: var(--footer); color: #c6d2dc; padding: 56px 0 24px; }
+.footer .logo { color: var(--white); }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; }
+.footer-brand p { margin-top: 14px; font-size: 13px; max-width: 280px; }
+.footer h4 { color: var(--white); font-size: 14px; margin-bottom: 14px; }
+.footer li { font-size: 13px; margin-bottom: 8px; }
+.footer a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); font-size: 12px;
+}
+
+/* ===== Responsive: navbar & footer ===== */
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .hamburger {
+    display: grid; place-items: center; width: 40px; height: 40px; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 10px; font-size: 20px;
+  }
+  .nav-menu {
+    display: none; position: absolute; top: 68px; left: 0; right: 0; margin: 0;
+    flex-direction: column; align-items: stretch; gap: 16px; padding: 20px 24px;
+    background: var(--white); border-bottom: 1px solid var(--line);
+  }
+  .menu-toggle:checked ~ .nav-menu { display: flex; }
+  .nav-menu ul { flex-direction: column; gap: 8px; margin: 0; }
+  .nav-actions .btn { flex: 1; }
+}
+@media (max-width: 520px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
