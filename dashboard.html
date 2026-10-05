@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Nusantrip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dash">
+
+  <aside class="sidebar">
+    <a href="index.html" class="logo"><span class="logo-icon">≈</span>Nusan<span>trip</span></a>
+    <nav>
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="#destinasi">Destinasi Saya</a>
+      <a href="#">Wishlist</a>
+      <a href="#booking">Riwayat Booking</a>
+      <a href="#">Profil</a>
+    </nav>
+    <a href="index.html" class="logout">Keluar</a>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <input type="search" placeholder="Cari destinasi, trip, atau booking..." aria-label="Cari">
+      <div class="user"><span class="avatar">A</span><div><strong>Agis Subactian</strong><small>Member Nusantrip</small></div></div>
+    </header>
+
+    <main>
+      <section class="hello">
+        <div>
+          <h1>Halo, Agis! 👋</h1>
+          <p>Selamat datang kembali. Lihat rencana perjalanan dan destinasi favoritmu hari ini.</p>
+        </div>
+        <a href="index.html#destinasi" class="btn btn-primary btn-sm">Jelajahi destinasi →</a>
+      </section>
+
+      <section class="stats">
+        <div class="stat"><small>Destinasi tersimpan</small><strong>5</strong><span>Wishlist aktif</span></div>
+        <div class="stat"><small>Perjalanan</small><strong>3</strong><span>Trip direncanakan</span></div>
+        <div class="stat"><small>Pemesanan</small><strong>4</strong><span>Booking tercatat</span></div>
+      </section>
+
+      <!-- DATA 1: Destinasi -->
+      <section class="panel" id="destinasi">
+        <div class="panel-head">
+          <div><h2>Data destinasi</h2><p>Destinasi yang kamu simpan dan rencanakan.</p></div>
+          <button class="btn btn-primary btn-sm">+ Tambah destinasi</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>No</th><th>Destinasi</th><th>Lokasi</th><th>Kategori</th><th>Harga</th><th>Rating</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Raja Ampat</td><td>Papua Barat Daya</td><td><span class="pill">Konservasi</span></td><td>Rp4.850.000</td><td>★ 4.9</td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>2</td><td>Gunung Bromo</td><td>Jawa Timur</td><td><span class="pill">Gunung</span></td><td>Rp1.350.000</td><td>★ 4.9</td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>3</td><td>Ubud</td><td>Bali</td><td><span class="pill">Budaya</span></td><td>Rp2.750.000</td><td>★ 4.7</td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>4</td><td>Labuan Bajo</td><td>Nusa Tenggara Timur</td><td><span class="pill">Pantai</span></td><td>Rp2.900.000</td><td>★ 4.8</td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>5</td><td>Kawah Ijen</td><td>Banyuwangi, Jawa Timur</td><td><span class="pill">Gunung</span></td><td>Rp1.150.000</td><td>★ 4.8</td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- DATA 2: Booking -->
+      <section class="panel" id="booking">
+        <div class="panel-head">
+          <div><h2>Data booking</h2><p>Riwayat dan jadwal pemesanan perjalananmu.</p></div>
+          <button class="btn btn-primary btn-sm">+ Tambah booking</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>No</th><th>Nama trip</th><th>Tanggal</th><th>Jumlah orang</th><th>Total</th><th>Status</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Labuan Bajo Liveaboard</td><td>18 Okt 2026</td><td>2</td><td>Rp5.800.000</td><td><span class="status ok">Dikonfirmasi</span></td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>2</td><td>Sunrise Tour Bromo</td><td>07 Nov 2026</td><td>4</td><td>Rp5.400.000</td><td><span class="status wait">Menunggu</span></td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>3</td><td>Ekspedisi Raja Ampat</td><td>12 Des 2026</td><td>2</td><td>Rp9.700.000</td><td><span class="status wait">Menunggu</span></td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+              <tr><td>4</td><td>Ubud Retreat</td><td>03 Agu 2026</td><td>1</td><td>Rp2.750.000</td><td><span class="status done">Selesai</span></td><td class="act"><button>Edit</button><button class="del">Hapus</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+</body>
+</html>
