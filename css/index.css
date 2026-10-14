@@ -276,3 +276,8 @@
     font-size: 22px;
   }
 }
+
+/* ===== Tombol favorit aktif (BAB 3) ===== */
+.fav.active {
+  color: #e0475b;
+}
