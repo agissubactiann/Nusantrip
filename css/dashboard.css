@@ -305,3 +305,17 @@ tbody tr:hover {
     font-size: 20px;
   }
 }
+
+/* ===== BAB 4 ===== */
+.tips {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.stat {
+  transition: transform 0.2s;
+}
+.avatar {
+  cursor: pointer;
+}
