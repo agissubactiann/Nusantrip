@@ -1,0 +1,115 @@
+/* ===== BAB 7 : tampilan CRUD Destinasi ===== */
+.notif {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #e2f4ea;
+  color: #1f7a4d;
+  font-size: 13px;
+  font-weight: 600;
+}
+.notif.error {
+  background: #fdecef;
+  color: #b3283c;
+}
+.thumb {
+  width: 56px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.thumb.besar {
+  width: 120px;
+  height: 80px;
+  margin-bottom: 8px;
+}
+.kosong {
+  text-align: center;
+  color: var(--muted);
+  padding: 28px 12px;
+}
+.act a {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: 600 12px var(--font);
+}
+.act a:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.act a.del:hover {
+  border-color: #d6455a;
+  color: #d6455a;
+}
+
+.crud-page {
+  background: #eef3f6;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+.crud-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 28px;
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(18, 38, 58, 0.14);
+}
+.crud-card h1 {
+  font-size: 24px;
+  color: var(--primary);
+  margin: 10px 0 18px;
+}
+.kembali {
+  font-size: 13px;
+  color: var(--muted);
+}
+.kembali:hover {
+  color: var(--primary);
+}
+.crud-card label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.crud-card input[type="text"],
+.crud-card input[type="number"],
+.crud-card select,
+.crud-card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  font: 14px var(--font);
+  border: 1px solid #d5dbe1;
+  border-radius: 8px;
+  background: var(--white);
+}
+.crud-card input[type="file"] {
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+.crud-card input:focus,
+.crud-card select:focus,
+.crud-card textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.dua-kolom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.aksi {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+@media (max-width: 520px) {
+  .dua-kolom {
+    grid-template-columns: 1fr;
+  }
+}

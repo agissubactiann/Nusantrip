@@ -1,20 +1,33 @@
 <?php
-// BAB 5 : proses login -> simpan nama ke SESSION dan COOKIE
+// BAB 7 : proses login -> cek email dan password di tb_user (READ), simpan SESSION
 session_start();
+include 'koneksi.php';
 
-$user = trim($_POST['user'] ?? '');
-$pass = $_POST['pass'] ?? '';
-
-if ($user === '' || $pass === '') {          // validasi dengan if
-  $_SESSION['error'] = 'Email/username dan kata sandi wajib diisi.';
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   header('Location: login.php');
   exit;
 }
 
-$_SESSION['nama'] = ucfirst(explode('@', $user)[0]);         // SESSION (di server)
-$_SESSION['login_sebelumnya'] = $_COOKIE['login_terakhir'] ?? null; // waktu login terakhir dari COOKIE
-setcookie('login_terakhir', date('d M Y, H:i'), time() + 86400 * 30, '/'); // COOKIE 30 hari
-setcookie('user_terakhir', $user, time() + 86400 * 7, '/');
+$email = trim($_POST['user'] ?? '');
+$pass  = $_POST['pass'] ?? '';
 
-header('Location: dashboard.php');
-exit;
+$sql = mysqli_prepare($koneksi, 'SELECT id, nama, password FROM tb_user WHERE email = ?');
+mysqli_stmt_bind_param($sql, 's', $email);
+mysqli_stmt_execute($sql);
+mysqli_stmt_bind_result($sql, $id, $nama, $hash);
+
+// Jika email ditemukan dan password cocok dengan hash
+if (mysqli_stmt_fetch($sql) && password_verify($pass, $hash)) {
+  $_SESSION['id']   = $id;
+  $_SESSION['nama'] = $nama;
+  $_SESSION['login_sebelumnya'] = $_COOKIE['login_terakhir'] ?? null;     // dari COOKIE
+  setcookie('login_terakhir', date('d M Y, H:i'), time() + 86400 * 30, '/');
+
+  echo "<script>
+    alert('Login berhasil, selamat datang " . addslashes(e($nama)) . "');
+    window.location = 'dashboard.php';
+  </script>";
+} else {
+  $_SESSION['error'] = 'Email atau kata sandi salah.';
+  header('Location: login.php');
+}

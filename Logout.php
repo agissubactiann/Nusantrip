@@ -1,7 +1,9 @@
 <?php
-// BAB 5 : logout -> hapus semua SESSION lalu kembali ke beranda
+// BAB 7 : logout -> hapus SESSION
 session_start();
-session_unset();     // hapus semua variabel session
-session_destroy();   // hancurkan session
-header('Location: index.php');
-exit;
+session_unset();
+session_destroy();
+echo "<script>
+  alert('Berhasil logout');
+  window.location = 'login.php';
+</script>";

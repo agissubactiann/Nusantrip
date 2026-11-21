@@ -1,185 +1,81 @@
-<?php session_start(); $login = isset($_SESSION["nama"]); ?>
+<?php
+// BAB 7 : CRUD Destinasi - halaman daftar (READ)
+session_start();
+if (!isset($_SESSION['nama'])) { header('Location: ../login.php'); exit; }
+include '../koneksi.php';
+
+$pesan = $_SESSION['pesan'] ?? null;
+unset($_SESSION['pesan']);
+$hasil = mysqli_query($koneksi, 'SELECT * FROM tb_destinasi ORDER BY id DESC');
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nusantrip - Jelajahi Indahnya Indonesia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Data Destinasi - Nusantrip</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/crud.css">
 </head>
-<body>
+<body class="dash">
+  <aside class="sidebar">
+    <a href="../index.php" class="logo"><span class="logo-icon">≈</span>Nusan<span>trip</span></a>
+    <nav>
+      <a href="../dashboard.php">Dashboard</a>
+      <a href="index.php" class="active">Destinasi Saya</a>
+      <a href="#">Wishlist</a>
+      <a href="#">Riwayat Booking</a>
+      <a href="#">Profil</a>
+    </nav>
+    <a href="../logout.php" class="logout">Keluar</a>
+  </aside>
 
-  <header class="navbar">
-    <div class="container navbar-inner">
-      <a href="index.php" class="logo"><span class="logo-icon">≈</span>Nusan<span>trip</span></a>
+  <div class="content">
+    <header class="topbar">
+      <strong>Kelola Destinasi</strong>
+      <div class="user"><span class="avatar"><?= strtoupper(substr($_SESSION['nama'], 0, 1)) ?></span><div><strong><?= e($_SESSION['nama']) ?></strong><small>Member Nusantrip</small></div></div>
+    </header>
 
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger" aria-label="Buka menu">☰</label>
-
-      <nav class="nav-menu">
-        <ul>
-          <li><a href="index.php" class="active">Beranda</a></li>
-          <li><a href="#destinasi">Destinasi</a></li>
-          <li><a href="#tentang">Tentang</a></li>
-        </ul>
-        <div class="nav-actions">
-          <?php if ($login): ?>
-            <a href="dashboard.php" class="btn btn-outline btn-sm">Halo, <?= htmlspecialchars($_SESSION["nama"]) ?></a>
-            <a href="logout.php" class="btn btn-primary btn-sm">Keluar</a>
-          <?php else: ?>
-            <a href="login.php" class="btn btn-outline btn-sm">Login</a>
-            <a href="register.php" class="btn btn-primary btn-sm">Daftar →</a>
-          <?php endif; ?>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="tentang">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <span class="badge">+ Jelajahi pesona Nusantara</span>
-          <h1>Jelajahi indahnya Indonesia, satu cerita di setiap perjalanan.</h1>
-          <p>Dari birunya laut hingga hangatnya budaya, Nusantrip membawamu lebih dekat ke keajaiban negeri sendiri.</p>
-          <div class="hero-cta">
-            <a href="#destinasi" class="btn btn-primary">Mulai Menjelajah →</a>
-            <div class="proof">
-              <span class="avatars"><i></i><i></i><i></i></span>
-              <small>Dipercaya 12.000+ penjelajah</small>
-            </div>
-          </div>
-        </div>
-        <div class="hero-image">
-          <img src="img/hero-pulau-padar.jpg" alt="Pemandangan Pulau Padar">
-          <div class="location-tag">
-            <strong>Pulau Padar</strong>
-            <small>Labuan Bajo, NTT</small>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="destinations" id="destinasi">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Pilihan penjelajah</span>
-            <h2>Destinasi populer untuk cerita barumu</h2>
-            <p>Pilihan tempat istimewa dari tim lokal kami, lengkap dengan pengalaman yang dirancang agar setiap perjalanan terasa berkesan.</p>
-          </div>
-          <a href="#destinasi" class="btn btn-outline btn-sm">Lihat semua destinasi →</a>
+    <main>
+      <section class="panel">
+        <div class="panel-head">
+          <div><h2>Data destinasi</h2><p>Tambah, ubah, dan hapus destinasi wisata.</p></div>
+          <a href="form.php" class="btn btn-primary btn-sm">+ Tambah destinasi</a>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="card-img">
-              <img src="img/raja-ampat.jpg" alt="Raja Ampat">
-              <span class="tag">Konservasi</span><button class="fav" aria-label="Simpan">♡</button>
-            </div>
-            <div class="card-body">
-              <div class="card-title"><h3>Raja Ampat</h3><span class="rating">★ 4.9</span></div>
-              <p class="place">Papua Barat Daya</p>
-              <div class="card-foot"><span class="price">Rp4.850.000 <small>/orang</small></span><a href="#" class="go" aria-label="Lihat Raja Ampat">↗</a></div>
-            </div>
-          </article>
+        <?php if ($pesan) { ?><p class="notif"><?= e($pesan) ?></p><?php } ?>
 
-          <article class="card">
-            <div class="card-img">
-              <img src="img/gunung-bromo.jpg" alt="Gunung Bromo">
-              <span class="tag">Gunung</span><button class="fav" aria-label="Simpan">♡</button>
-            </div>
-            <div class="card-body">
-              <div class="card-title"><h3>Gunung Bromo</h3><span class="rating">★ 4.9</span></div>
-              <p class="place">Jawa Timur</p>
-              <div class="card-foot"><span class="price">Rp1.350.000 <small>/orang</small></span><a href="#" class="go" aria-label="Lihat Gunung Bromo">↗</a></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="img/ubud.jpg" alt="Ubud">
-              <span class="tag">Budaya</span><button class="fav" aria-label="Simpan">♡</button>
-            </div>
-            <div class="card-body">
-              <div class="card-title"><h3>Ubud</h3><span class="rating">★ 4.7</span></div>
-              <p class="place">Bali</p>
-              <div class="card-foot"><span class="price">Rp2.750.000 <small>/orang</small></span><a href="#" class="go" aria-label="Lihat Ubud">↗</a></div>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="img/labuan-bajo.jpg" alt="Labuan Bajo">
-              <span class="tag">Pilihan baru</span><button class="fav" aria-label="Simpan">♡</button>
-            </div>
-            <div class="card-body">
-              <div class="card-title"><h3>Labuan Bajo</h3><span class="rating">★ 4.8</span></div>
-              <p class="place">Nusa Tenggara Timur</p>
-              <div class="card-foot"><span class="price">Rp2.900.000 <small>/orang</small></span><a href="#" class="go" aria-label="Lihat Labuan Bajo">↗</a></div>
-            </div>
-          </article>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>No</th><th>Foto</th><th>Destinasi</th><th>Lokasi</th><th>Kategori</th><th>Harga</th><th>Rating</th><th>Aksi</th></tr>
+            </thead>
+            <tbody>
+              <?php $no = 1; while ($row = mysqli_fetch_assoc($hasil)) { ?>
+              <tr>
+                <td><?= $no++ ?></td>
+                <td><?php if ($row['photo']) { ?><img src="../img/destinasi/<?= e($row['photo']) ?>" class="thumb" alt="<?= e($row['nama']) ?>"><?php } else { echo '-'; } ?></td>
+                <td><?= e($row['nama']) ?></td>
+                <td><?= e($row['lokasi']) ?></td>
+                <td><span class="pill"><?= e($row['kategori']) ?></span></td>
+                <td><?= rupiah($row['harga']) ?></td>
+                <td>★ <?= e($row['rating']) ?></td>
+                <td class="act">
+                  <a href="form.php?id=<?= (int) $row['id'] ?>">Edit</a>
+                  <a href="hapus.php?id=<?= (int) $row['id'] ?>" class="del" onclick="return confirm('Yakin ingin menghapus <?= e(addslashes($row['nama'])) ?>?')">Hapus</a>
+                </td>
+              </tr>
+              <?php } ?>
+              <?php if ($no === 1) { ?>
+              <tr><td colspan="8" class="kosong">Belum ada data destinasi. Klik "+ Tambah destinasi".</td></tr>
+              <?php } ?>
+            </tbody>
+          </table>
         </div>
-      </div>
-    </section>
-
-    <section class="cta">
-      <div class="container cta-inner">
-        <div>
-          <small>Perjalananmu dimulai di sini</small>
-          <h2>Siap menemukan sudut Indonesia favoritmu?</h2>
-        </div>
-        <a href="register.php" class="btn btn-white">Mulai Menjelajah →</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="index.php" class="logo"><span class="logo-icon">≈</span>Nusantrip</a>
-          <p>Teman perjalanan untuk menjelajah alam, budaya, dan cerita terbaik dari seluruh Nusantara.</p>
-        </div>
-        <div>
-          <h4>Jelajahi</h4>
-          <ul>
-            <li><a href="index.php">Beranda</a></li>
-            <li><a href="#destinasi">Destinasi</a></li>
-            <li><a href="#tentang">Tentang kami</a></li>
-            <li><a href="#">Cerita perjalanan</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Bantuan</h4>
-          <ul>
-            <li><a href="#">Pusat bantuan</a></li>
-            <li><a href="#">Syarat &amp; ketentuan</a></li>
-            <li><a href="#">Kebijakan privasi</a></li>
-            <li><a href="#">Hubungi kami</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Hubungi Nusantrip</h4>
-          <ul>
-            <li>halo@nusantrip.id</li>
-            <li>+62 21 555 0109</li>
-            <li>Jakarta, Indonesia</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <small>© <span id="tahun">2026</span> Nusantrip. Semua hak dilindungi.</small>
-        <small>Dibuat dengan semangat Nusantara.</small>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/modal.js"></script>
-  <script src="js/script.js"></script>
+      </section>
+    </main>
+  </div>
 </body>
 </html>

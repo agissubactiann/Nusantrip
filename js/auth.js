@@ -1,6 +1,6 @@
 /* ==========================================================
    Nusantrip - BAB 4 : Validasi form Login & Register
-   Dipakai di login.html dan register.html
+   Dipakai di login.php dan register.php
    ========================================================== */
 
 const form = document.querySelector("form");
@@ -17,11 +17,5 @@ form.addEventListener("submit", function (e) {
     return;
   }
 
-  // Ambil nama pengguna: dari kolom nama (register) atau dari email/username (login)
-  const namaUser = nama ? nama.value : document.getElementById("user").value.split("@")[0];
-
-  // WEB STORAGE : simpan nama agar bisa dipakai di halaman Dashboard
-  localStorage.setItem("namaUser", namaUser.trim().split(" ")[0]);
-
-  alert(nama ? "Akun berhasil dibuat! Selamat datang, " + namaUser + "." : "Login berhasil! Selamat datang kembali.");
+  // BAB 7 : sisanya (cek email/sandi, simpan SESSION) dikerjakan oleh PHP di server
 });
